@@ -1,0 +1,159 @@
+@startuml
+
+class User {
+-id: int
+-name: string
+-email: string
+-password: string
+-phone: string
+
++login()
++logout()
++register()
++updateProfile()
++viewOrders()
+}
+
+class Customer {
+-address: string
+-bonusPoints: int
+-cartId: int
+-status: string
+-birthDate: Date
+
++addToCart()
++removeFromCart()
++placeOrder()
++payOrder()
++leaveReview()
+}
+
+class Admin {
+-adminLevel: int
+-accessCode: string
+-department: string
+-salary: float
+-permissions: string
+
++addProduct()
++deleteProduct()
++updateProduct()
++blockUser()
++generateReport()
+}
+
+class Product {
+-id: int
+-title: string
+-price: float
+-quantity: int
+-description: string
+
++updatePrice()
++checkAvailability()
++applyDiscount()
++getInfo()
++changeQuantity()
+}
+
+class Category {
+-id: int
+-name: string
+-description: string
+-parentCategory: string
+-productCount: int
+
++addCategory()
++deleteCategory()
++editCategory()
++getProducts()
++sortProducts()
+}
+
+class Cart {
+-id: int
+-totalPrice: float
+-createdDate: Date
+-itemCount: int
+-status: string
+
++addItem()
++removeItem()
++clearCart()
++calculateTotal()
++getItems()
+}
+
+class Order {
+-id: int
+-orderDate: Date
+-totalAmount: float
+-deliveryAddress: string
+-status: string
+
++confirmOrder()
++cancelOrder()
++updateStatus()
++printReceipt()
++getOrderInfo()
+}
+
+class Payment {
+-id: int
+-paymentType: string
+-amount: float
+-paymentDate: Date
+-status: string
+
++processPayment()
++refundPayment()
++validateCard()
++generateInvoice()
++checkStatus()
+}
+
+class Delivery {
+-id: int
+-deliveryType: string
+-address: string
+-deliveryDate: Date
+-status: string
+
++createDelivery()
++updateDelivery()
++trackDelivery()
++cancelDelivery()
++estimateTime()
+}
+
+class Review {
+-id: int
+-rating: int
+-comment: string
+-reviewDate: Date
+-userName: string
+
++addReview()
++editReview()
++deleteReview()
++getRating()
++reportReview()
+}
+
+Customer --|> User
+Admin --|> User
+
+Customer --> Order
+Order --> Payment
+Order --> Delivery
+Product --> Review
+Category --> Product
+
+Customer o-- Cart
+Category o-- Product
+
+Order *-- Payment
+Order *-- Delivery
+Cart *-- Product
+
+@enduml
