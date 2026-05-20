@@ -1,0 +1,15 @@
+$kind: http-request
+url: http://localhost:9001/orders?product_id=1&quantity=2
+method: POST
+queryParams:
+  product_id: "1"
+  quantity: "2"
+scripts:
+  - type: beforeRequest
+    code: "pm.test(\"Order created\", function () {\r
+
+      \    pm.response.to.have.status(200);\r
+
+      });"
+    language: text/javascript
+order: 1322280988069539
